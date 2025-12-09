@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贵州潇潇网络科技有限公司 | 专业网络运营与运维解决方案</title>
+    <meta name="description" content="贵州潇潇网络科技有限公司专注于企业级网络运维、服务器托管、网络安全及IT基础设施建设。立足贵阳，服务全省。">
+    <style>
+        /* --- 核心变量与重置 --- */
+        :root {
+            --bg-primary: #0b1120; /* 深蓝背景 */
+            --bg-secondary: #151e32; /* 模块背景 */
+            --accent-color: #10b981; /* 极光绿 */
+            --accent-hover: #059669;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --max-width: 1280px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; object-fit: cover; }
+
+        /* --- 通用工具类 --- */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section-padding { padding: 80px 0; }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* 兼容性处理 */
+            background-clip: text; 
+            color: transparent;
+        }
+        .section-title p { color: var(--text-muted); font-size: 1.1rem; }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: #fff;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover { background-color: var(--accent-hover); transform: translateY(-2px); }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+        .btn-outline:hover { background: var(--accent-color); color: #fff; }
+
+        /* --- 1. 顶部导航 (Sticky Header) --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(11, 17, 32, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: var(--accent-color); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 0.95rem; color: var(--text-muted); }
+        .nav-links a:hover { color: var(--accent-color); }
+        .header-contact { font-size: 0.9rem; color: var(--accent-color); font-weight: bold; }
+
+        /* --- 2. 首屏 Hero 区域 --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            /* 增加暗色遮罩以保证文字可读性 */
+            background: linear-gradient(rgba(11,17,32,0.8), rgba(11,17,32,0.9)), url('https://picsum.photos/id/2/1920/1080');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-content { max-width: 800px; }
+        .hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 25px; color: #fff; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px; max-width: 600px; }
+        .hero-tags { margin-top: 30px; display: flex; gap: 15px; }
+        .tag { background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; color: #ddd; }
+
+        /* --- 3. 数据概览 (Stats) --- */
+        .stats-bar { 
+            background: var(--accent-color); 
+            color: #fff; 
+            padding: 40px 0; 
+            margin-top: -60px; 
+            position: relative; 
+            z-index: 10; 
+            border-radius: 8px; 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3); 
+        }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; divide-x: 1px solid rgba(255,255,255,0.2); }
+        .stat-item h3 { font-size: 2.5rem; font-weight: 800; }
+        .stat-item p { font-size: 0.9rem; opacity: 0.9; }
+
+        /* --- 4. 公司简介 (About) --- */
+        .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-img { position: relative; }
+        .about-img img { border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid var(--border-color); }
+        .about-text h4 { color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .about-text h2 { font-size: 2rem; margin-bottom: 20px; color: #fff; }
+        .about-text p { color: var(--text-muted); margin-bottom: 20px; }
+
+        /* --- 5. 核心业务网格 (Services) --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-card {
+            background: var(--bg-secondary);
+            padding: 40px 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: 0.3s;
+        }
+        .service-card:hover { border-color: var(--accent-color); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .icon-box { width: 60px; height: 60px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; color: var(--accent-color); font-size: 1.5rem; }
+        .service-card h3 { margin-bottom: 15px; color: #fff; }
+        .service-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* --- 6. 运维特色 (Feature 1) --- */
+        .feature-block { background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .feature-flex { display: flex; flex-direction: row-reverse; align-items: center; gap: 50px; }
+        .feature-content h2 { color: #fff; margin-bottom: 20px; }
+        .feature-content ul li { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; color: var(--text-muted); }
+        .feature-content ul li::before { content: "✓"; color: var(--accent-color); font-weight: bold; }
+
+        /* --- 7. 安全防护 (Feature 2) --- */
+        .security-block { background: var(--bg-primary); }
+        .security-flex { display: flex; align-items: center; gap: 50px; }
+        .security-flex h2 { color: #fff; margin-bottom: 20px; }
+
+        /* --- 8. 行业解决方案 (Solutions) --- */
+        .solutions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        /* 修复处：移除了无效的 'group;' 属性 */
+        .solution-item { 
+            position: relative; 
+            height: 300px; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            cursor: pointer;
+        }
+        .solution-item img { width: 100%; height: 100%; transition: 0.5s; object-fit: cover; }
+        .solution-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px;
+            background: linear-gradient(transparent, #000);
+            z-index: 2;
+        }
+        .solution-overlay h3 { color: #fff; }
+        .solution-item:hover img { transform: scale(1.1); }
+
+        /* --- 9. 为什么选择我们 (Why Us) --- */
+        .why-us-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        .reason-item { display: flex; gap: 20px; }
+        .reason-num { font-size: 3rem; font-weight: 900; color: rgba(255,255,255,0.05); line-height: 1; min-width: 60px; }
+        .reason-text h4 { color: var(--accent-color); margin-bottom: 5px; font-size: 1.2rem; }
+
+        /* --- 10. 服务流程 (Process) --- */
+        .process-steps { display: flex; justify-content: space-between; position: relative; }
+        .process-steps::before { content: ''; position: absolute; top: 25px; left: 0; width: 100%; height: 2px; background: var(--border-color); z-index: 0; }
+        .step { position: relative; z-index: 1; background: var(--bg-primary); padding: 0 10px; text-align: center; width: 200px; }
+        .step-num { width: 50px; height: 50px; background: var(--bg-secondary); border: 2px solid var(--accent-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: bold; color: #fff; }
+        .step h4 { color: #fff; }
+
+        /* --- 11. 技术栈 (Tech Stack) --- */
+        .tech-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; opacity: 0.7; }
+        .tech-item { font-size: 1.5rem; font-weight: bold; color: var(--text-muted); border: 1px solid var(--border-color); padding: 15px 30px; border-radius: 4px; transition: 0.3s; }
+        .tech-item:hover { color: var(--accent-color); border-color: var(--accent-color); opacity: 1; }
+
+        /* --- 12. 客户案例 (Case Study) --- */
+        .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .case-content { padding: 50px; background: var(--bg-secondary); display: flex; flex-direction: column; justify-content: center; }
+        .case-content h3 { color: #fff; font-size: 1.5rem; margin-bottom: 15px; }
+        .case-tag { color: var(--accent-color); font-size: 0.8rem; margin-bottom: 10px; font-weight: bold; }
+
+        /* --- 13. 客户评价 (Testimonials) --- */
+        .testimonials-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .testi-card { background: var(--bg-secondary); padding: 30px; border-radius: 8px; border-top: 3px solid var(--accent-color); }
+        .testi-text { font-style: italic; color: var(--text-muted); margin-bottom: 20px; }
+        .client-info h5 { margin-bottom: 2px; color: #fff; }
+        .client-info span { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* --- 14. 行业动态 (News) --- */
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .news-card img { width: 100%; height: 200px; border-radius: 8px 8px 0 0; }
+        .news-body { padding: 20px; background: var(--bg-secondary); border-radius: 0 0 8px 8px; border: 1px solid var(--bg-secondary); border-top: none; }
+        .news-date { font-size: 0.8rem; color: var(--accent-color); margin-bottom: 10px; display: block; }
+        .news-body h4 { font-size: 1.1rem; margin-bottom: 10px; color: #fff; }
+        .news-body a { font-size: 0.9rem; text-decoration: underline; color: var(--text-muted); }
+        .news-body a:hover { color: var(--accent-color); }
+
+        /* --- 15. 团队风采 (Team) --- */
+        .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+        .team-member img { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px; border: 2px solid var(--accent-color); padding: 3px; background: var(--bg-secondary); }
+        .team-member h4 { color: #fff; margin-bottom: 5px; }
+
+        /* --- 16. 常见问题 (FAQ) --- */
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .faq-item { background: var(--bg-secondary); padding: 25px; border-radius: 8px; border: 1px solid transparent; transition: 0.3s; }
+        .faq-item:hover { border-color: var(--border-color); }
+        .faq-item h4 { margin-bottom: 10px; color: #fff; font-size: 1.1rem; }
+        .faq-item p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- 17. CTA 栏 (Call to Action) --- */
+        .cta-section { background: linear-gradient(45deg, var(--bg-secondary), #1e293b); text-align: center; padding: 80px 0; border-top: 1px solid var(--border-color); }
+        .cta-section h2 { color: #fff; }
+
+        /* --- 18. 联系方式与地图 (Contact) --- */
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .contact-info-box h3 { margin-bottom: 30px; color: #fff; }
+        .info-row { display: flex; margin-bottom: 25px; gap: 20px; align-items: flex-start; }
+        .info-icon { color: var(--accent-color); font-size: 1.2rem; margin-top: 3px; }
+        .info-content strong { display: block; color: #fff; margin-bottom: 5px; }
+        .form-group { margin-bottom: 20px; }
+        .form-control { width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #fff; border-radius: 4px; font-family: inherit; }
+        .form-control:focus { outline: none; border-color: var(--accent-color); background: rgba(255,255,255,0.08); }
+
+        /* --- 页脚 (Footer) --- */
+        footer { background: #020617; padding: 60px 0 20px; border-top: 1px solid #1e293b; font-size: 0.9rem; color: var(--text-muted); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-logo { color: #fff; font-size: 1.2rem; margin-bottom: 15px; display: block; font-weight: bold; }
+        .footer-bottom { text-align: center; border-top: 1px solid #1e293b; padding-top: 20px; font-size: 0.85rem; }
+        
+        /* 简单的二维码占位样式 */
+        .qr-placeholder {
+            width: 100px; height: 100px; background: #fff; margin-top: 10px; 
+            display: flex; align-items: center; justify-content: center; 
+            color: #000; font-size: 0.8rem; text-align: center;
+        }
+
+        /* --- 响应式调整 --- */
+        @media (max-width: 992px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; divide-x: none; }
+            .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-row { grid-template-columns: 1fr; }
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* 移动端简化：隐藏菜单 */
+            .hero h1 { font-size: 2rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .about-section, .feature-flex, .security-flex, .contact-wrapper, .case-grid { grid-template-columns: 1fr; flex-direction: column; }
+            .process-steps { flex-direction: column; align-items: center; gap: 30px; }
+            .process-steps::before { display: none; }
+            .solutions-grid, .news-grid, .team-grid, .faq-grid, .footer-grid { grid-template-columns: 1fr; }
+            .stats-bar { margin-top: 0; box-shadow: none; background: transparent; padding: 20px 0; }
+            .stats-bar .stat-item { margin-bottom: 20px; background: var(--bg-secondary); padding: 20px; border-radius: 8px; }
+            .why-us-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Header 导航 -->
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo"><span>//</span> 贵州潇潇科技</div>
+            <nav class="nav-links">
+                <a href="#home">首页</a>
+                <a href="#services">核心服务</a>
+                <a href="#solutions">解决方案</a>
+                <a href="#case">客户案例</a>
+                <a href="#about">关于我们</a>
+            </nav>
+            <div class="header-contact">☎ 180-2876-0127</div>
+        </div>
+    </header>
+
+    <!-- 2. Hero 首屏 -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>构建高可用、零中断的<br><span style="color:var(--accent-color)">企业级数字基础设施</span></h1>
+                <p>贵州潇潇网络科技有限公司致力于提供卓越的网络运营与IT运维服务。我们以技术为驱动，保障您的业务在数字世界中稳健运行。</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn">立即咨询方案</a>
+                    <a href="#services" class="btn btn-outline" style="margin-left: 15px">了解服务内容</a>
+                </div>
+                <div class="hero-tags">
+                    <span class="tag"># 网络安全</span>
+                    <span class="tag"># 7x24h 运维</span>
+                    <span class="tag"># 云端架构</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 数据统计 -->
+    <section class="container">
+        <div class="stats-bar">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>99.9%</h3>
+                    <p>网络服务可用性</p>
+                </div>
+                <div class="stat-item">
+                    <h3>300+</h3>
+                    <p>服务企业客户</p>
+                </div>
+                <div class="stat-item">
+                    <h3>15min</h3>
+                    <p>平均故障响应</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>认证工程师团队</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 关于我们 -->
+    <section id="about" class="section-padding container">
+        <div class="about-section">
+            <div class="about-text">
+                <h4>WHO WE ARE</h4>
+                <h2>立足贵阳，服务全省的<br>技术护航者</h2>
+                <p>贵州潇潇网络科技有限公司成立于贵阳高新区，是一家专注于企业级网络生态建设的科技型公司。我们深知，在数字化转型的浪潮中，稳定的网络架构是企业发展的基石。</p>
+                <p>我们的团队由拥有多年一线实战经验的网络架构师、安全专家和运维工程师组成，专注于解决复杂的网络故障、优化传输效率以及构建铜墙铁壁般的数据安全防线。</p>
+                <a href="#contact" style="color: var(--accent-color); font-weight: bold;">查看更多企业介绍 &rarr;</a>
+            </div>
+            <div class="about-img">
+                <img src="https://picsum.photos/id/1/600/400" alt="公司办公环境">
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 核心服务 -->
+    <section id="services" class="section-padding" style="background-color: #0f172a;">
+        <div class="container">
+            <div class="section-title">
+                <h2>核心业务领域</h2>
+                <p>从基础架构到云端安全，提供一站式技术闭环</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon-box">⚙️</div>
+                    <h3>IT 基础运维</h3>
+                    <p>提供桌面运维、服务器维护、打印机及外设管理，解决日常办公中的所有技术难题，让您的团队专注于核心业务。</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box">🌐</div>
+                    <h3>企业网络架构</h3>
+                    <p>定制化设计局域网、广域网互联方案。包括综合布线、机房建设、无线覆盖（AC+AP）及多链路负载均衡。</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box">🛡️</div>
+                    <h3>网络安全防护</h3>
+                    <p>部署企业级防火墙、入侵检测系统、防病毒网关。定期进行漏洞扫描与渗透测试，保障数据资产安全。</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box">☁️</div>
+                    <h3>云服务与数据中心</h3>
+                    <p>协助企业上云（阿里云/腾讯云/华为云），提供混合云架构设计、数据异地灾备及私有云搭建服务。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 运维特色 -->
+    <section class="section-padding feature-block">
+        <div class="container">
+            <div class="feature-flex">
+                <div class="feature-content" style="flex:1">
+                    <h4 style="color:var(--accent-color); margin-bottom:10px;">INTELLIGENT OPS</h4>
+                    <h2>主动式监控，防患于未然</h2>
+                    <p style="margin-bottom:20px; color:var(--text-muted)">告别传统的“救火式”运维。我们采用先进的监控系统（Zabbix/Prometheus），实时采集您网络设备的数百项指标。</p>
+                    <ul>
+                        <li>全链路流量实时可视化分析</li>
+                        <li>硬件故障自动告警（邮件/短信/微信）</li>
+                        <li>定期生成资源使用率月度报表</li>
+                        <li>核心业务系统 7x24 小时值守</li>
+                    </ul>
+                </div>
+                <div class="feature-img" style="flex:1">
+                    <img src="https://picsum.photos/id/60/600/400" alt="监控大屏" style="border-radius:8px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 安全特色 -->
+    <section class="section-padding security-block">
+        <div class="container">
+            <div class="security-flex">
+                <div class="feature-content" style="flex:1">
+                    <h4 style="color:var(--accent-color); margin-bottom:10px;">DATA SECURITY</h4>
+                    <h2>企业数据的铜墙铁壁</h2>
+                    <p style="margin-bottom:20px; color:var(--text-muted)">数据是企业的核心资产。贵州潇潇科技为您构建多层次的防御体系，符合等保合规要求。</p>
+                    <ul>
+                        <li>勒索病毒专项防护策略</li>
+                        <li>关键数据加密存储与传输</li>
+                        <li>内网行为审计与权限管控</li>
+                        <li>分钟级数据快照与恢复机制</li>
+                    </ul>
+                </div>
+                <div class="feature-img" style="flex:1">
+                    <img src="https://picsum.photos/id/532/600/400" alt="网络安全" style="border-radius:8px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. 解决方案 -->
+    <section id="solutions" class="section-padding container">
+        <div class="section-title">
+            <h2>行业解决方案</h2>
+            <p>针对不同行业痛点，量身定制的技术策略</p>
+        </div>
+        <div class="solutions-grid">
+            <div class="solution-item">
+                <img src="https://picsum.photos/id/180/400/300" alt="办公楼宇">
+                <div class="solution-overlay">
+                    <h3>智慧楼宇网络方案</h3>
+                    <p style="font-size:0.9rem; color:#ddd; margin-top:5px;">全光网覆盖 + 智能安防联动</p>
+                </div>
+            </div>
+            <div class="solution-item">
+                <img src="https://picsum.photos/id/445/400/300" alt="工厂">
+                <div class="solution-overlay">
+                    <h3>工业互联网方案</h3>
+                    <p style="font-size:0.9rem; color:#ddd; margin-top:5px;">低延时生产网 + 设备数据采集</p>
+                </div>
+            </div>
+            <div class="solution-item">
+                <img src="https://picsum.photos/id/4/400/300" alt="教育">
+                <div class="solution-overlay">
+                    <h3>教育园区方案</h3>
+                    <p style="font-size:0.9rem; color:#ddd; margin-top:5px;">高密度Wi-Fi 6 + 电子教室运维</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. 为什么选择我们 -->
+    <section class="section-padding" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="why-us-grid">
+                <div class="reason-item">
+                    <div class="reason-num">01</div>
+                    <div class="reason-text">
+                        <h4>本地化快速响应</h4>
+                        <p style="color:var(--text-muted)">立足贵阳高新区，核心区域承诺 30 分钟内工程师上门，全省范围 24 小时内到达现场。</p>
+                    </div>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-num">02</div>
+                    <div class="reason-text">
+                        <h4>透明的服务流程</h4>
+                        <p style="color:var(--text-muted)">所有服务均有工单记录，故障原因、处理过程、更换配件一目了然，拒绝隐形消费。</p>
+                    </div>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-num">03</div>
+                    <div class="reason-text">
+                        <h4>厂商级技术支持</h4>
+                        <p style="color:var(--text-muted)">与华为、H3C、深信服等主流厂商建立深度合作，获取原厂技术资源与备件支持。</p>
+                    </div>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-num">04</div>
+                    <div class="reason-text">
+                        <h4>全生命周期管理</h4>
+                        <p style="color:var(--text-muted)">不仅是维修，更为您的IT资产提供从采购、登记、盘点到报废的全流程管理建议。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. 服务流程 -->
+    <section class="section-padding container">
+        <div class="section-title">
+            <h2>标准化服务流程</h2>
+        </div>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h4>需求调研</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:10px;">现场勘查与痛点分析</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h4>方案设计</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:10px;">定制拓扑与实施计划</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h4>部署实施</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:10px;">专业施工与设备调试</p>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <h4>验收交付</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:10px;">压力测试与培训移交</p>
+            </div>
+            <div class="step">
+                <div class="step-num">5</div>
+                <h4>长期运维</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:10px;">定期巡检与故障排除</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. 技术栈 -->
+    <section class="section-padding" style="background:var(--bg-secondary)">
+        <div class="container">
+            <div class="tech-logos">
+                <div class="tech-item">Huawei</div>
+                <div class="tech-item">Cisco</div>
+                <div class="tech-item">H3C</div>
+                <div class="tech-item">Sangfor</div>
+                <div class="tech-item">Ruijie</div>
+                <div class="tech-item">VMware</div>
+                <div class="tech-item">CentOS</div>
+                <div class="tech-item">Windows Server</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. 客户案例 -->
+    <section id="case" class="section-padding container">
+        <div class="section-title">
+            <h2>成功案例</h2>
+        </div>
+        <div class="case-grid">
+            <div class="case-img">
+                <img src="https://picsum.photos/id/201/800/600" alt="服务器机房" style="width:100%; height:100%;">
+            </div>
+            <div class="case-content">
+                <span class="case-tag"># 机房建设改造</span>
+                <h3>贵阳某大型物流园区网络升级项目</h3>
+                <p style="color:var(--text-muted); margin:20px 0;">该园区面临原有网络设备老化、无线信号死角多、仓储扫码枪频繁掉线的问题。</p>
+                <p style="color:var(--text-muted); margin-bottom:30px;">我们通过重新规划光纤骨干网，部署了120个高密AP，并实施了基于业务优先级的QoS策略。改造后，网络延迟降低了80%，扫码作业效率提升了40%。</p>
+                <a href="#contact" class="btn-outline" style="display:inline-block; padding:8px 20px; border-radius:4px;">查看详情</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. 客户评价 -->
+    <section class="section-padding container">
+        <div class="testimonials-row">
+            <div class="testi-card">
+                <p class="testi-text">"潇潇科技的响应速度让我印象深刻。深夜服务器出现故障，他们在一个小时内就远程定位并解决了问题，保障了我们第二天的业务正常开展。"</p>
+                <div class="client-info">
+                    <h5>张经理</h5>
+                    <span>某电商公司 IT总监</span>
+                </div>
+            </div>
+            <div class="testi-card">
+                <p class="testi-text">"专业的团队做专业的事。他们为我们规划的网络安全方案非常全面，自从合作以来，我们再也没有受到过勒索病毒的困扰。"</p>
+                <div class="client-info">
+                    <h5>李总</h5>
+                    <span>贵州某制造业企业负责人</span>
+                </div>
+            </div>
+            <div class="testi-card">
+                <p class="testi-text">"非常有耐心的服务团队，不仅帮我们解决了网络卡顿问题，还免费培训了我们的行政人员如何处理简单的打印机故障。"</p>
+                <div class="client-info">
+                    <h5>王女士</h5>
+                    <span>某律师事务所 行政主管</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. 行业动态 -->
+    <section class="section-padding" style="background:var(--bg-secondary)">
+        <div class="container">
+            <div class="section-title">
+                <h2>行业洞察</h2>
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <img src="https://picsum.photos/id/0/400/300" alt="News 1">
+                    <div class="news-body">
+                        <span class="news-date">2023-10-15</span>
+                        <h4>企业如何应对日益严峻的勒索病毒威胁？</h4>
+                        <a href="#">阅读更多</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="https://picsum.photos/id/6/400/300" alt="News 2">
+                    <div class="news-body">
+                        <span class="news-date">2023-09-22</span>
+                        <h4>Wi-Fi 7 即将到来，企业网络需要升级吗？</h4>
+                        <a href="#">阅读更多</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="https://picsum.photos/id/20/400/300" alt="News 3">
+                    <div class="news-body">
+                        <span class="news-date">2023-08-10</span>
+                        <h4>混合云架构：中小企业降本增效的新选择</h4>
+                        <a href="#">阅读更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 15. 团队介绍 -->
+    <section class="section-padding container">
+        <div class="section-title">
+            <h2>精英团队</h2>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="https://picsum.photos/id/1005/200/200" alt="Team 1">
+                <h4>陈工</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted)">高级网络架构师 (CCIE)</p>
+            </div>
+            <div class="team-member">
+                <img src="https://picsum.photos/id/1011/200/200" alt="Team 2">
+                <h4>刘工</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted)">资深系统运维专家</p>
+            </div>
+            <div class="team-member">
+                <img src="https://picsum.photos/id/1012/200/200" alt="Team 3">
+                <h4>赵工</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted)">网络安全顾问 (CISP)</p>
+            </div>
+            <div class="team-member">
+                <img src="https://picsum.photos/id/1025/200/200" alt="Team 4">
+                <h4>周工</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted)">项目交付经理</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 16. FAQ -->
+    <section class="section-padding" style="background:var(--bg-secondary)">
+        <div class="container">
+            <div class="section-title">
+                <h2>常见问题</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>Q: 你们提供上门服务吗？收费标准如何？</h4>
+                    <p>A: 是的，我们提供贵阳市区的快速上门服务。收费方式分为单次故障处理费和年度运维套餐两种，具体根据您的设备数量和网络规模制定，价格透明。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Q: 签订年度运维合同包含哪些内容？</h4>
+                    <p>A: 年度运维通常包含：无限次远程支持、定期的现场巡检、防病毒软件更新、数据备份检查以及紧急故障的优先上门处理权。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Q: 公司只有10台电脑，需要专业的运维吗？</h4>
+                    <p>A: 即使是小规模网络，数据丢失或网络中断也会造成业务损失。我们可以为您提供轻量级的运维套餐，性价比极高。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Q: 你们能否开具增值税专用发票？</h4>
+                    <p>A: 当然可以。我们是正规注册的科技公司，可为所有对公业务开具增值税专用发票。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 17. CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 style="margin-bottom:20px; font-size:2rem;">准备好升级您的企业网络了吗？</h2>
+            <p style="color:var(--text-muted); margin-bottom:40px;">预约免费的现场网络环境评估，发现潜在隐患。</p>
+            <a href="#contact" class="btn" style="padding: 15px 50px; font-size:1.1rem;">立即预约</a>
+        </div>
+    </section>
+
+    <!-- 18. 联系与地图 -->
+    <section id="contact" class="section-padding container">
+        <div class="contact-wrapper">
+            <div class="contact-info-box">
+                <h3>联系我们</h3>
+                <p style="color:var(--text-muted); margin-bottom:30px;">无论您有技术咨询还是业务合作需求，欢迎随时联系我们。</p>
+                
+                <div class="info-row">
+                    <div class="info-icon">📍</div>
+                    <div class="info-content">
+                        <strong>公司地址</strong>
+                        <span style="color:var(--text-muted); font-size:0.9rem;">贵州省贵阳市贵阳高新区长岭街道黔灵山路357号<br>德福中心A7栋1单元18层5号</span>
+                    </div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-icon">📞</div>
+                    <div class="info-content">
+                        <strong>服务热线</strong>
+                        <span style="color:var(--text-muted); font-size:0.9rem;">180-2876-0127</span>
+                    </div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-icon">📧</div>
+                    <div class="info-content">
+                        <strong>电子邮箱</strong>
+                        <span style="color:var(--text-muted); font-size:0.9rem;">info@gzxiaoxiaotech.asia</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-box">
+                <form onsubmit="event.preventDefault(); alert('感谢您的留言，我们会尽快联系您！');">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="您的称呼" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="联系电话" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="公司名称">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5" placeholder="请简述您的需求（如：网络故障、机房建设、服务器托管等）" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width:100%">发送留言</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <span class="footer-logo">贵州潇潇网络科技有限公司</span>
+                    <p style="margin-bottom:20px;">专注于为企业提供稳定、高效、安全的网络运维服务。做您身边最值得信赖的IT管家。</p>
+                </div>
+                <div>
+                    <h4 style="color:#fff; margin-bottom:20px;">快速链接</h4>
+                    <ul style="line-height:2;">
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#services">服务项目</a></li>
+                        <li><a href="#case">成功案例</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff; margin-bottom:20px;">服务范围</h4>
+                    <ul style="line-height:2;">
+                        <li>企业网络运维</li>
+                        <li>机房工程建设</li>
+                        <li>网络安全等级保护</li>
+                        <li>私有云部署</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff; margin-bottom:20px;">关注我们</h4>
+                    <p>扫码关注公众号获取最新资讯</p>
+                    <div class="qr-placeholder">
+                        [二维码区域]
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 贵州潇潇网络科技有限公司 版权所有 | 贵阳网络运维首选品牌</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
